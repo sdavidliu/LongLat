@@ -9,14 +9,16 @@
 import UIKit
 import CoreLocation
 import MapKit
+import CoreBluetooth
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, CBPeripheralManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var label2: UILabel!
     var locManager = CLLocationManager()
     var currentLocation = CLLocation()
+    var myBTManager: CBPeripheralManager?
     var o1 = CLLocationCoordinate2D()
     var o2 = CLLocationCoordinate2D()
     var o3 = CLLocationCoordinate2D()
@@ -51,6 +53,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             locManager.startUpdatingLocation()
             
         }
+        
+        myBTManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
         
         o1 = CLLocationCoordinate2D(latitude: 33.649292, longitude: -117.842989)
         o2 = CLLocationCoordinate2D(latitude: 33.648905, longitude: -117.842964)
@@ -159,6 +163,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         polygonView.strokeColor = UIColor.black
         
         return polygonView
+    }
+    
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        var statusMessage = ""
+        
+        switch peripheral.state {
+        case .poweredOn:
+            statusMessage = "Bluetooth Status: Turned On"
+            
+        case .poweredOff:
+            statusMessage = "Bluetooth Status: Turned Off"
+            
+        case .resetting:
+            statusMessage = "Bluetooth Status: Resetting"
+            
+        case .unauthorized:
+            statusMessage = "Bluetooth Status: Not Authorized"
+            
+        case .unsupported:
+            statusMessage = "Bluetooth Status: Not Supported"
+            
+        default:
+            statusMessage = "Bluetooth Status: Unknown"
+        }
+        
+        print(statusMessage)
+        
+        if peripheral.state == .poweredOff {
+            //TODO: Update this property in an App Manager class
+        }
     }
     
     override func didReceiveMemoryWarning() {
