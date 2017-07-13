@@ -47,7 +47,7 @@
                             <constraint firstItem="xat-co-Mly" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="PiK-NV-P64"/>
                             <constraint firstItem="u5D-sS-jKe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W1A-2D-Vii"/>
                             <constraint firstItem="eX6-8N-Pfz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aWW-wX-gw0"/>
-                            <constraint firstItem="u5D-sS-jKe" firstAttribute="top" secondItem="eX6-8N-Pfz" secondAttribute="bottom" constant="20" id="gda-sy-T48"/>
+                            <constraint firstItem="u5D-sS-jKe" firstAttribute="top" secondItem="eX6-8N-Pfz" secondAttribute="bottom" constant="15" id="gda-sy-T48"/>
                             <constraint firstItem="eX6-8N-Pfz" firstAttribute="top" secondItem="xat-co-Mly" secondAttribute="bottom" constant="20" id="ls7-Kz-gnB"/>
                         </constraints>
                     </view>
