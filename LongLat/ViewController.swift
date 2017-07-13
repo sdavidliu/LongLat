@@ -19,24 +19,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var locManager = CLLocationManager()
     var currentLocation = CLLocation()
     var myBTManager: CBPeripheralManager?
-    var o1 = CLLocationCoordinate2D()
-    var o2 = CLLocationCoordinate2D()
-    var o3 = CLLocationCoordinate2D()
-    var o4 = CLLocationCoordinate2D()
-    var o5 = CLLocationCoordinate2D()
-    var o6 = CLLocationCoordinate2D()
-    var o7 = CLLocationCoordinate2D()
-    var o8 = CLLocationCoordinate2D()
-    var o9 = CLLocationCoordinate2D()
-    var o10 = CLLocationCoordinate2D()
-    var o11 = CLLocationCoordinate2D()
-    var o12 = CLLocationCoordinate2D()
-    var o13 = CLLocationCoordinate2D()
-    var o14 = CLLocationCoordinate2D()
-    var o15 = CLLocationCoordinate2D()
-    var o16 = CLLocationCoordinate2D()
-    var o17 = CLLocationCoordinate2D()
-    var o18 = CLLocationCoordinate2D()
+    var outsideZones = [OutsideZone]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,67 +39,91 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         myBTManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
         
-        o1 = CLLocationCoordinate2D(latitude: 33.649292, longitude: -117.842989)
-        o2 = CLLocationCoordinate2D(latitude: 33.648905, longitude: -117.842964)
-        o3 = CLLocationCoordinate2D(latitude: 33.648984, longitude: -117.842535)
-        o4 = CLLocationCoordinate2D(latitude: 33.649095, longitude: -117.842526)
-        o5 = CLLocationCoordinate2D(latitude: 33.649091, longitude: -117.842397)
-        o6 = CLLocationCoordinate2D(latitude: 33.648879, longitude: -117.842499)
-        o7 = CLLocationCoordinate2D(latitude: 33.648908, longitude: -117.842233)
-        o8 = CLLocationCoordinate2D(latitude: 33.648895, longitude: -117.842367)
-        o9 = CLLocationCoordinate2D(latitude: 33.648531, longitude: -117.842434)
-        o10 = CLLocationCoordinate2D(latitude: 33.648549, longitude: -117.842185)
-        o11 = CLLocationCoordinate2D(latitude: 33.648531, longitude: -117.842305)
-        o12 = CLLocationCoordinate2D(latitude: 33.648419, longitude: -117.842437)
-        o13 = CLLocationCoordinate2D(latitude: 33.648408, longitude: -117.842283)
-        o14 = CLLocationCoordinate2D(latitude: 33.648381, longitude: -117.842806)
-        o15 = CLLocationCoordinate2D(latitude: 33.648289, longitude: -117.842792)
-        o16 = CLLocationCoordinate2D(latitude: 33.648225, longitude: -117.842340)
-        o17 = CLLocationCoordinate2D(latitude: 33.648125, longitude: -117.842031)
-        o18 = CLLocationCoordinate2D(latitude: 33.648290, longitude: -117.841907)
+        let o1 = CLLocationCoordinate2D(latitude: 33.649355, longitude: -117.842984)
+        let o2 = CLLocationCoordinate2D(latitude: 33.649371, longitude: -117.842858)
+        let o3 = CLLocationCoordinate2D(latitude: 33.649255, longitude: -117.842831)
+        let o4 = CLLocationCoordinate2D(latitude: 33.649170, longitude: -117.842702)
+        let o5 = CLLocationCoordinate2D(latitude: 33.649133, longitude: -117.842729)
+        let o6 = CLLocationCoordinate2D(latitude: 33.649284, longitude: -117.842965)
+        let o7 = CLLocationCoordinate2D(latitude: 33.649106, longitude: -117.842592)
+        let o8 = CLLocationCoordinate2D(latitude: 33.649108, longitude: -117.842529)
+        let o9 = CLLocationCoordinate2D(latitude: 33.649128, longitude: -117.842422)
+        let o10 = CLLocationCoordinate2D(latitude: 33.648994, longitude: -117.842378)
+        let o11 = CLLocationCoordinate2D(latitude: 33.648974, longitude: -117.842540)
+        let o12 = CLLocationCoordinate2D(latitude: 33.648930, longitude: -117.842913)
+        let o13 = CLLocationCoordinate2D(latitude: 33.648989, longitude: -117.842920)
+        let o14 = CLLocationCoordinate2D(latitude: 33.649012, longitude: -117.842708)
+        let o15 = CLLocationCoordinate2D(latitude: 33.648892, longitude: -117.843051)
+        let o16 = CLLocationCoordinate2D(latitude: 33.649362, longitude: -117.843105)
+        let o17 = CLLocationCoordinate2D(latitude: 33.648904, longitude: -117.842362)
+        let o18 = CLLocationCoordinate2D(latitude: 33.648775, longitude: -117.842531)
+        let o19 = CLLocationCoordinate2D(latitude: 33.648625, longitude: -117.842505)
+        let o20 = CLLocationCoordinate2D(latitude: 33.648532, longitude: -117.842302)
+        let o21 = CLLocationCoordinate2D(latitude: 33.648555, longitude: -117.842148)
+        let o22 = CLLocationCoordinate2D(latitude: 33.648922, longitude: -117.842213)
+        let o23 = CLLocationCoordinate2D(latitude: 33.648429, longitude: -117.842470)
+        let o24 = CLLocationCoordinate2D(latitude: 33.648412, longitude: -117.842272)
+        let o25 = CLLocationCoordinate2D(latitude: 33.648357, longitude: -117.842564)
+        let o26 = CLLocationCoordinate2D(latitude: 33.648401, longitude: -117.842653)
+        let o27 = CLLocationCoordinate2D(latitude: 33.648384, longitude: -117.842808)
+        let o28 = CLLocationCoordinate2D(latitude: 33.648201, longitude: -117.842784)
+        let o29 = CLLocationCoordinate2D(latitude: 33.648133, longitude: -117.842552)
+        let o30 = CLLocationCoordinate2D(latitude: 33.648115, longitude: -117.842255)
+        let o31 = CLLocationCoordinate2D(latitude: 33.648058, longitude: -117.841918)
+        let o32 = CLLocationCoordinate2D(latitude: 33.648406, longitude: -117.842160)
+        let o33 = CLLocationCoordinate2D(latitude: 33.648288, longitude: -117.841919)
+        let o34 = CLLocationCoordinate2D(latitude: 33.648454, longitude: -117.841553)
+        let o35 = CLLocationCoordinate2D(latitude: 33.648538, longitude: -117.841707)
+        let o36 = CLLocationCoordinate2D(latitude: 33.648779, longitude: -117.841246)
+        let o37 = CLLocationCoordinate2D(latitude: 33.648876, longitude: -117.841410)
+        let o38 = CLLocationCoordinate2D(latitude: 33.648977, longitude: -117.841093)
+        let o39 = CLLocationCoordinate2D(latitude: 33.649074, longitude: -117.841263)
+        let o40 = CLLocationCoordinate2D(latitude: 33.649271, longitude: -117.841557)
+        let o41 = CLLocationCoordinate2D(latitude: 33.649148, longitude: -117.841684)
+        let o42 = CLLocationCoordinate2D(latitude: 33.648932, longitude: -117.841856)
+        let o43 = CLLocationCoordinate2D(latitude: 33.649123, longitude: -117.842191)
+        let o44 = CLLocationCoordinate2D(latitude: 33.649388, longitude: -117.841934)
+        let o45 = CLLocationCoordinate2D(latitude: 33.649468, longitude: -117.842148)
+        let o46 = CLLocationCoordinate2D(latitude: 33.649634, longitude: -117.841976)
+        let o47 = CLLocationCoordinate2D(latitude: 33.649562, longitude: -117.842417)
+        let o48 = CLLocationCoordinate2D(latitude: 33.649843, longitude: -117.842233)
+        let o49 = CLLocationCoordinate2D(latitude: 33.649702, longitude: -117.842598)
+        let o50 = CLLocationCoordinate2D(latitude: 33.650087, longitude: -117.842677)
+        let o51 = CLLocationCoordinate2D(latitude: 33.649862, longitude: -117.842911)
+        let o52 = CLLocationCoordinate2D(latitude: 33.649667, longitude: -117.843039)
+        let o53 = CLLocationCoordinate2D(latitude: 33.649549, longitude: -117.842829)
         
-        var z1Points = [CLLocationCoordinate2D]()
-        z1Points.append(CLLocationCoordinate2D(latitude: o1.latitude, longitude: o1.longitude))
-        z1Points.append(CLLocationCoordinate2D(latitude: o2.latitude, longitude: o2.longitude))
-        z1Points.append(CLLocationCoordinate2D(latitude: o3.latitude, longitude: o3.longitude))
-        z1Points.append(CLLocationCoordinate2D(latitude: o4.latitude, longitude: o4.longitude))
-        var z2Points = [CLLocationCoordinate2D]()
-        z2Points.append(CLLocationCoordinate2D(latitude: o3.latitude, longitude: o3.longitude))
-        z2Points.append(CLLocationCoordinate2D(latitude: o4.latitude, longitude: o4.longitude))
-        z2Points.append(CLLocationCoordinate2D(latitude: o5.latitude, longitude: o5.longitude))
-        z2Points.append(CLLocationCoordinate2D(latitude: o8.latitude, longitude: o8.longitude))
-        z2Points.append(CLLocationCoordinate2D(latitude: o6.latitude, longitude: o6.longitude))
-        var z3Points = [CLLocationCoordinate2D]()
-        z3Points.append(CLLocationCoordinate2D(latitude: o6.latitude, longitude: o6.longitude))
-        z3Points.append(CLLocationCoordinate2D(latitude: o8.latitude, longitude: o8.longitude))
-        z3Points.append(CLLocationCoordinate2D(latitude: o7.latitude, longitude: o7.longitude))
-        z3Points.append(CLLocationCoordinate2D(latitude: o10.latitude, longitude: o10.longitude))
-        z3Points.append(CLLocationCoordinate2D(latitude: o11.latitude, longitude: o11.longitude))
-        z3Points.append(CLLocationCoordinate2D(latitude: o9.latitude, longitude: o9.longitude))
-        var z4Points = [CLLocationCoordinate2D]()
-        z4Points.append(CLLocationCoordinate2D(latitude: o9.latitude, longitude: o9.longitude))
-        z4Points.append(CLLocationCoordinate2D(latitude: o11.latitude, longitude: o11.longitude))
-        z4Points.append(CLLocationCoordinate2D(latitude: o13.latitude, longitude: o13.longitude))
-        z4Points.append(CLLocationCoordinate2D(latitude: o12.latitude, longitude: o12.longitude))
-        var z5Points = [CLLocationCoordinate2D]()
-        z5Points.append(CLLocationCoordinate2D(latitude: o12.latitude, longitude: o12.longitude))
-        z5Points.append(CLLocationCoordinate2D(latitude: o13.latitude, longitude: o13.longitude))
-        z5Points.append(CLLocationCoordinate2D(latitude: o16.latitude, longitude: o16.longitude))
-        z5Points.append(CLLocationCoordinate2D(latitude: o15.latitude, longitude: o15.longitude))
-        z5Points.append(CLLocationCoordinate2D(latitude: o14.latitude, longitude: o14.longitude))
-        var z6Points = [CLLocationCoordinate2D]()
-        z6Points.append(CLLocationCoordinate2D(latitude: o13.latitude, longitude: o13.longitude))
-        z6Points.append(CLLocationCoordinate2D(latitude: o18.latitude, longitude: o18.longitude))
-        z6Points.append(CLLocationCoordinate2D(latitude: o17.latitude, longitude: o17.longitude))
-        z6Points.append(CLLocationCoordinate2D(latitude: o16.latitude, longitude: o16.longitude))
+        let oz1Points = OutsideZone(name: "OZ1", points: [o1,o2,o3,o4,o5,o6])
+        let oz2Points = OutsideZone(name: "OZ2", points: [o5,o4,o7,o8,o11,o12,o13,o14])
+        let oz3Points = OutsideZone(name: "OZ3", points: [o11,o8,o9,o10])
+        let oz4Points = OutsideZone(name: "OZ4", points: [o11,o10,o17,o18])
+        let oz5Points = OutsideZone(name: "OZ5", points: [o17,o20,o21,o22])
+        let oz6Points = OutsideZone(name: "OZ6", points: [o17,o18,o19,o20])
+        let oz7Points = OutsideZone(name: "OZ7", points: [o19,o20,o24,o23])
+        let oz8Points = OutsideZone(name: "OZ8", points: [o23,o25,o29,o30,o24])
+        let oz9Points = OutsideZone(name: "OZ9", points: [o25,o26,o27,o28,o29])
+        let oz10Points = OutsideZone(name: "OZ10", points: [o24,o32,o33,o31,o30])
+        let oz11Points = OutsideZone(name: "OZ11", points: [o33,o31,o34,o35])
+        let oz12Points = OutsideZone(name: "OZ12", points: [o35,o34,o36,o37])
+        let oz13Points = OutsideZone(name: "OZ13", points: [o36,o37,o39,o38])
+        let oz14Points = OutsideZone(name: "OZ14", points: [o37,o39,o40,o41])
+        let oz15Points = OutsideZone(name: "OZ15", points: [o40,o41,o44,o46])
+        let oz16Points = OutsideZone(name: "OZ16", points: [o41,o42,o43,o44])
+        let oz17Points = OutsideZone(name: "OZ17", points: [o44,o45,o47,o48,o46])
+        let oz18Points = OutsideZone(name: "OZ18", points: [o48,o47,o49,o50])
+        let oz19Points = OutsideZone(name: "OZ19", points: [o49,o50,o51,o52,o53])
+        let oz20Points = OutsideZone(name: "OZ20", points: [o52,o53,o1,o16])
+        let oz21Points = OutsideZone(name: "OZ21", points: [o16,o15,o13,o14,o5,o6,o1])
         
-        let z1Polygon = MKPolygon(coordinates: &z1Points, count: z1Points.count)
-        let z2Polygon = MKPolygon(coordinates: &z2Points, count: z2Points.count)
-        let z3Polygon = MKPolygon(coordinates: &z3Points, count: z3Points.count)
-        let z4Polygon = MKPolygon(coordinates: &z4Points, count: z4Points.count)
-        let z5Polygon = MKPolygon(coordinates: &z5Points, count: z5Points.count)
-        let z6Polygon = MKPolygon(coordinates: &z6Points, count: z6Points.count)
-        mapView.addOverlays([z1Polygon, z2Polygon, z3Polygon, z4Polygon, z5Polygon, z6Polygon])
+        outsideZones = [oz1Points,oz2Points,oz3Points,oz4Points,oz5Points,oz6Points,oz7Points,oz8Points,oz9Points,oz10Points,oz11Points,oz12Points,oz13Points,oz14Points,oz15Points,oz16Points,oz17Points,oz18Points,oz19Points,oz20Points,oz21Points]
+        
+        for oz in outsideZones {
+            let polygon = MKPolygon(coordinates: &oz.points, count: oz.points.count)
+            mapView.add(polygon)
+        }
+        
+        //let oz1Polygon = MKPolygon(coordinates: &oz1Points.points, count: oz1Points.points.count)
+        //mapView.addOverlays([oz1Polygon])
         
         currentLocation = locManager.location!
         let latitude = currentLocation.coordinate.latitude
@@ -131,26 +138,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         currentLocation = manager.location!
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
+        let loc = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         label.text = "Latitude: \(latitude)\nLongitude: \(longitude)"
         
-        var zoneString = ""
-        if (CLLocationCoordinate2D(latitude: latitude, longitude: longitude).contained(by: [o1, o2, o3, o4])){
-            zoneString = "Z1"
-        }
-        if (CLLocationCoordinate2D(latitude: latitude, longitude: longitude).contained(by: [o3, o4, o5, o8, o6])){
-            zoneString = "Z2"
-        }
-        if (CLLocationCoordinate2D(latitude: latitude, longitude: longitude).contained(by: [o6, o8, o7, o10, o11, o9])){
-            zoneString = "Z3"
-        }
-        if (CLLocationCoordinate2D(latitude: latitude, longitude: longitude).contained(by: [o9, o11, o13, o12])){
-            zoneString = "Z4"
-        }
-        if (CLLocationCoordinate2D(latitude: latitude, longitude: longitude).contained(by: [o12, o13, o16, o15, o14])){
-            zoneString = "Z5"
-        }
-        if (CLLocationCoordinate2D(latitude: latitude, longitude: longitude).contained(by: [o13, o18, o17, o16])){
-            zoneString = "Z6"
+        var zoneString = "None"
+        for oz in outsideZones{
+            if (loc.contained(by: oz.points)){
+                zoneString = oz.name
+            }
         }
         
         label2.text = "Current location: \(zoneString)"
@@ -225,9 +220,9 @@ extension CLLocationCoordinate2D {
 class OutsideZone{
     
     var name = ""
-    var points = [MKPointAnnotation]()
+    var points = [CLLocationCoordinate2D]()
     
-    init(name : String, points : [MKPointAnnotation]){
+    init(name : String, points : [CLLocationCoordinate2D]){
         self.name = name
         self.points = points
     }
