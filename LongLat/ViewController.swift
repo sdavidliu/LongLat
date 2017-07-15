@@ -53,8 +53,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let o12 = CLLocationCoordinate2D(latitude: 33.648930, longitude: -117.842913)
         let o13 = CLLocationCoordinate2D(latitude: 33.648989, longitude: -117.842920)
         let o14 = CLLocationCoordinate2D(latitude: 33.649012, longitude: -117.842708)
-        let o15 = CLLocationCoordinate2D(latitude: 33.648892, longitude: -117.843051)
-        let o16 = CLLocationCoordinate2D(latitude: 33.649362, longitude: -117.843105)
+        let o15 = CLLocationCoordinate2D(latitude: 33.648900, longitude: -117.843182)
+        let o16 = CLLocationCoordinate2D(latitude: 33.649352, longitude: -117.843206)
         let o17 = CLLocationCoordinate2D(latitude: 33.648904, longitude: -117.842362)
         let o18 = CLLocationCoordinate2D(latitude: 33.648775, longitude: -117.842531)
         let o19 = CLLocationCoordinate2D(latitude: 33.648625, longitude: -117.842505)
@@ -94,6 +94,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let o53 = CLLocationCoordinate2D(latitude: 33.649549, longitude: -117.842829)
         let o54 = CLLocationCoordinate2D(latitude: 33.649267, longitude: -117.842505)
         let o55 = CLLocationCoordinate2D(latitude: 33.649201, longitude: -117.842400)
+        let o56 = CLLocationCoordinate2D(latitude: 33.648345, longitude: -117.843086)
+        let o57 = CLLocationCoordinate2D(latitude: 33.648421, longitude: -117.842778)
+        let o58 = CLLocationCoordinate2D(latitude: 33.648894, longitude: -117.842858)
         
         let oz1Points = OutsideZone(name: "OZ1", points: [o1,o2,o3,o4,o5,o6])
         let oz2Points = OutsideZone(name: "OZ2", points: [o5,o4,o7,o8,o11,o12,o13,o14])
@@ -117,8 +120,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let oz20Points = OutsideZone(name: "OZ20", points: [o52,o53,o1,o16])
         let oz21Points = OutsideZone(name: "OZ21", points: [o16,o15,o13,o14,o5,o6,o1])
         let oz22Points = OutsideZone(name: "OZ22", points: [o4,o7,o8,o9,o55,o54])
+        let oz23Points = OutsideZone(name: "OZ23", points: [o12,o13,o15,o56,o27,o57,o58])
         
-        outsideZones = [oz1Points,oz2Points,oz3Points,oz4Points,oz5Points,oz6Points,oz7Points,oz8Points,oz9Points,oz10Points,oz11Points,oz12Points,oz13Points,oz14Points,oz15Points,oz16Points,oz17Points,oz18Points,oz19Points,oz20Points,oz21Points,oz22Points]
+        outsideZones = [oz1Points,oz2Points,oz3Points,oz4Points,oz5Points,oz6Points,oz7Points,oz8Points,oz9Points,oz10Points,oz11Points,oz12Points,oz13Points,oz14Points,oz15Points,oz16Points,oz17Points,oz18Points,oz19Points,oz20Points,oz21Points,oz22Points,oz23Points]
         
         for oz in outsideZones {
             let polygon = MKPolygon(coordinates: &oz.points, count: oz.points.count)
